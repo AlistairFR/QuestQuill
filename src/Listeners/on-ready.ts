@@ -5,8 +5,8 @@ export const onReady = (client: Client) => {
     client.on('ready', () => {
         console.log(`Logged in as ${client.user?.username}!`);
 
-        const commands = SlashCommands.map((slashCommand) =>
-        slashCommand.command.toJSON()
+        const commands = SlashCommands.map(({ command }) =>
+        command.toJSON()
         );
         client.application?.commands.set(commands);
     }
