@@ -1,6 +1,6 @@
 import { Client, IntentsBitField, Partials } from 'discord.js';
 import { TOKEN } from './config';
-import { onMessageCreate, onReady } from './Listeners';
+import { onMessageCreate, onReady, onInteractionCreate } from './Listeners';
 
 // Spécifie le type d'event que le bot écoutera avec INTENTS
 const myIntents = new IntentsBitField();
@@ -14,5 +14,6 @@ const client = new Client({
 
 onReady(client);
 onMessageCreate(client);
+onInteractionCreate(client);
 
 client.login(TOKEN);
