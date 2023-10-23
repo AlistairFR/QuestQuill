@@ -6,7 +6,7 @@ export const onMessageCreate = (client: Client) => {
 
         const content = message.content.toLowerCase();
         if (content === 'ping') {
-            await message.reply(`${message.member?.displayName}: pong!`);
+            await message.reply(`${message.member?.displayName || message.author.username }: pong!`);
         }
     });
 }
