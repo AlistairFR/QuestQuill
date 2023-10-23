@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "dev:main": "nodemon src/main.ts"
   },
   "author": "",
   "license": "ISC",
