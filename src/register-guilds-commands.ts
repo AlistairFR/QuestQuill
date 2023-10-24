@@ -1,6 +1,6 @@
 import { REST } from "discord.js";
-import { SlashCommands } from "."
-import { APPLICATION_ID, GUILD_ID, TOKEN } from "../config";
+import { SlashCommands } from "./slash-commands"
+import { APPLICATION_ID, GUILD_ID, TOKEN } from "./config";
 import { Routes } from "discord-api-types/v9";
 
 const registerGuildsCommands = async () => {
