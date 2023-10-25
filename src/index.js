@@ -37,9 +37,12 @@ client.on("interactionCreate", async (interaction) => {
     }
     // I want to show the detail of the rolls, but not if there are too many
     const rollsText =
-      rolls.length > 10 ? `(${rolls.length} rolls)` : `(${rolls.join(", ")})`;
+      rolls.length > 10
+        ? `(${rolls.length} d${sides}s)`
+        : `(${rolls.join(", ")})`;
 
-    const total = rolls.reduce((a, b) => a + b, 0) + modifier;
+    const diceTotal = rolls.reduce((a, b) => a + b, 0);
+    const total = diceTotal + modifier;
     // I want to show the modifier, but not if it's 0
     const modifierText =
       modifier > 0
@@ -51,6 +54,8 @@ client.on("interactionCreate", async (interaction) => {
     const replyText =
       rolls.length > 1
         ? `You rolled ${rollsText}${modifierText}, for a total of ${total} !`
+        : rolls.length === 1 && modifier !== 0
+        ? `You rolled ${diceTotal}${modifierText}, for a total of ${total} !`
         : `You rolled ${total} !`;
     await interaction.reply(replyText);
   }
