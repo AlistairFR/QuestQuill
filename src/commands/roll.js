@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
+const { SlashCommandBuilder } = require('@discordjs/builders');
 
 const rollCommand = new SlashCommandBuilder()
     .setName('roll')
@@ -30,4 +30,5 @@ const rollCommand = new SlashCommandBuilder()
 
 const RollCommand = rollCommand.toJSON();
 
-export { RollCommand };
+exports.RollCommand = RollCommand;
+
