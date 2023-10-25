@@ -1,9 +1,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { ChatInputCommandInteraction } from "discord.js";
-import { SlashCommand } from "../types";
 
-export const RollCommand: SlashCommand = {
-    command: new SlashCommandBuilder()
+export const RollCommand = {
+    data : new SlashCommandBuilder()
         .setName('roll')
         .setDescription('Rolls a die')
         .addNumberOption((option) =>
@@ -30,12 +28,17 @@ export const RollCommand: SlashCommand = {
             .setDescription('The bonus to add to the roll')
             .setRequired(false)
         ),
-    async run(interaction) {
-        if (!interaction.isChatInputCommand()) return;
-
+    async execute(interaction: { isChatInputCommand: () => any; options: any; }) {
         const options = interaction.options;
         const count = options.getNumber('count') ?? 1;
         const sides = options.getString('sides', true);
-        // TODO: actually roll the dice and send the result to the user
+        const bonus = options.getNumber('bonus') ?? 0;
+
+        // Roll "count" number of dice with "sides" number of sides and add "bonus"
+        const rolls = [];
+        for (let i = 0; i < count; i++) {
+            rolls.push(Math.floor(Math.random() * sides) + 1);
+        }
+        const total = rolls.reduce((a, b) => a + b) + bonus;
     }
 };
