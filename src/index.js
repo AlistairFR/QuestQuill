@@ -37,18 +37,21 @@ client.on("interactionCreate", async (interaction) => {
     }
     // I want to show the detail of the rolls, but not if there are too many
     const rollsText =
-      rolls.length > 10
-        ? `(${rolls.length} rolls)`
-        : `(${rolls.join(", ")})`;
+      rolls.length > 10 ? `(${rolls.length} rolls)` : `(${rolls.join(", ")})`;
 
     const total = rolls.reduce((a, b) => a + b, 0) + modifier;
     // I want to show the modifier, but not if it's 0
-    const modifierText = modifier > 0 ? ` + ${modifier}` : modifier < 0 ? ` - ${Math.abs(modifier)}` : "";
+    const modifierText =
+      modifier > 0
+        ? ` + ${modifier}`
+        : modifier < 0
+        ? ` - ${Math.abs(modifier)}`
+        : "";
 
     const replyText =
       rolls.length > 1
-      ? `You rolled ${rollsText}${modifierText}, for a total of ${total} !`
-      : `You rolled ${total} !`;
+        ? `You rolled ${rollsText}${modifierText}, for a total of ${total} !`
+        : `You rolled ${total} !`;
     await interaction.reply(replyText);
   }
 });
@@ -57,8 +60,6 @@ async function main() {
   const commands = [RollCommand];
   try {
     console.log("Started refreshing application (/) commands.");
-    console.log(commands);
-
     await rest.put(Routes.applicationGuildCommands(APPLICATION_ID, GUILD_ID), {
       body: commands,
     });
