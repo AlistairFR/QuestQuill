@@ -8,23 +8,11 @@
     "@discordjs/rest": "^2.0.1",
     "discord-api-types": "^0.37.61",
     "discord.js": "^14.13.0",
-    "dotenv": "^16.3.1",
-    "typescript": "^5.2.2"
+    "dotenv": "^16.3.1"
   },
   "scripts": {
-    "build": "tsc",
-    "check-types": "tsc --noEmit",
-    "dev:main": "nodemon src/main.ts",
-    "register-guild-commands": "ts-node src/register-guild-commands.ts",
-    "dev": "run-s register-guild-commands dev:main",
     "start": "node build"
   },
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^20.8.7",
-    "nodemon": "^3.0.1",
-    "npm-run-all": "^4.1.5",
-    "ts-node": "^10.9.1"
-  }
+  "license": "ISC"
 }
