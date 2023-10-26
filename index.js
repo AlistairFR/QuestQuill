@@ -5,7 +5,7 @@ require("dotenv").config();
 const { Client, IntentsBitField, REST, Routes } = require("discord.js");
 
 // Import the RollCommand from the ./commands/roll file
-const { RollCommand } = require("./commands/roll");
+const { RollCommand } = require("./src/commands/roll");
 
 // Get the necessary environment variables
 const APPLICATION_ID = process.env.APPLICATION_ID;
