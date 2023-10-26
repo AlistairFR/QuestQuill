@@ -28,9 +28,14 @@ const rest = new REST({ version: "10" }).setToken(TOKEN);
 // Log in to Discord with the provided token
 client.login(TOKEN);
 
+// Create an array of the slash commands to register with Discord
+const commands = [RollCommand];
+
 // When the client is ready, log a message to the console
 client.on("ready", () => {
   console.log(`${client.user.tag} is online!`);
+  // Register the slash commands with Discord for production
+  client.application.commands.set(commands);
 });
 
 // When an interaction (e.g. a slash command) is created, handle it
@@ -84,7 +89,6 @@ client.on("interactionCreate", async (interaction) => {
 
 // Define a main function that registers the slash commands with Discord
 async function main() {
-  const commands = [RollCommand];
   try {
     console.log("Started refreshing application (/) commands.");
     await rest.put(Routes.applicationGuildCommands(APPLICATION_ID, GUILD_ID), {
@@ -97,4 +101,4 @@ async function main() {
 }
 
 // Call the main function to register the slash commands
-main();
+//main();
